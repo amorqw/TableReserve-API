@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("ConString")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("ConString"), 
+        b=> b.MigrationsAssembly("APIProject")));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

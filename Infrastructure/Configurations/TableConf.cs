@@ -1,4 +1,4 @@
-using APIProject.Models;
+using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,7 +9,7 @@ public class TableConf: IEntityTypeConfiguration<Table>
     public void Configure(EntityTypeBuilder<Table> builder)
     {
         builder.HasKey(t => t.TableId);
-        builder.HasMany(t => t.Reservations);
+        builder.HasOne(t => t.Reservation);
     }
     
 }

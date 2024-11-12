@@ -1,4 +1,4 @@
-using APIProject.Models;
+using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,7 +9,6 @@ public class UserConfig: IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.HasKey(u => u.UserId);
-        builder.HasMany(u => u.Reservations);
         
     }
     

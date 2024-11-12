@@ -1,4 +1,5 @@
-namespace APIProject.Models;
+
+namespace Core.Entities;
 
 public class Reservation
 {
