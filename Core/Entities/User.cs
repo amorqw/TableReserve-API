@@ -14,8 +14,6 @@ public class User
     public string Password { get; set; }=string.Empty;
     public string? PhoneNumber { get; set; }
     
-    public Guid ReservationId { get; set; }
-    public Reservation? Reservation { get; set; }
-    
+    public List<Reservation> Reservations { get; set; } = new List<Reservation>();
     
 }

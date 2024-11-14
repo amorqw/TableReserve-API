@@ -9,7 +9,9 @@ public class TableConf: IEntityTypeConfiguration<Table>
     public void Configure(EntityTypeBuilder<Table> builder)
     {
         builder.HasKey(t => t.TableId);
-        builder.HasOne(t => t.Reservation);
+        builder.HasMany(t => t.Reservations)
+            .WithOne(t => t.Table)
+            .HasForeignKey(r => r.TableId);
     }
     
 }

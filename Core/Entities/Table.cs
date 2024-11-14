@@ -7,6 +7,5 @@ public class Table
     public int SeatCount { get; set; }
     public bool IsAvailable { get; set; }
     
-    public Guid ReservationId { get; set; }
-    public Reservation? Reservation { get; set; }
+    public List<Reservation> Reservations { get; set; } = new List<Reservation>();
 }
