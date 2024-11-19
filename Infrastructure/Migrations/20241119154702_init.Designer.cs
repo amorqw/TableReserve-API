@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241114140803_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241119154702_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,9 +60,6 @@ namespace Infrastructure.Migrations
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("boolean");
-
-                    b.Property<Guid>("ReservationId")
-                        .HasColumnType("uuid");
 
                     b.Property<int>("SeatCount")
                         .HasColumnType("integer");

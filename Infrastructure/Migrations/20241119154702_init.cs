@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,8 +17,7 @@ namespace Infrastructure.Migrations
                 {
                     TableId = table.Column<Guid>(type: "uuid", nullable: false),
                     SeatCount = table.Column<int>(type: "integer", nullable: false),
-                    IsAvailable = table.Column<bool>(type: "boolean", nullable: false),
-                    ReservationId = table.Column<Guid>(type: "uuid", nullable: false)
+                    IsAvailable = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {

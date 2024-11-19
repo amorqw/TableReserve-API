@@ -58,9 +58,6 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("boolean");
 
-                    b.Property<Guid>("ReservationId")
-                        .HasColumnType("uuid");
-
                     b.Property<int>("SeatCount")
                         .HasColumnType("integer");
 
