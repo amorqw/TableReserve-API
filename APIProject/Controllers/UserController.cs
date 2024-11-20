@@ -1,5 +1,6 @@
 using APIProject.Interfaces;
 using Core.Entities;
+using APIProject.DtoS;
 using  APIProject.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,5 +32,42 @@ public class UserController:ControllerBase
         return user;
     }
 
+    [HttpPost]
+    public async Task<ActionResult<User>> PostUser([FromQuery] User user)
+    {
+        if (await _userService.UserExists(user.UserId))
+        {
+            return BadRequest("User already exists");
+        }
+
+        var result = await _userService.AddUser(user);
+        return Ok(await _userService.GetAll());
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteUser(Guid id)
+    {
+        var res = await _userService.GetById(id);
+        if(res == null)
+            return BadRequest($"User not found with this id{id}");
+        await _userService.DeleteUser(res);
+        return Ok($"User {res.UserId} deleted");
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateUser(Guid id, UserDto model)
+    {
+        var user = await _userService.GetById(id);
+        if (user == null)
+            return BadRequest($"User not found with this id{id}");
+        if(await _userService.UserExists(model.UserId))
+            return BadRequest("User already exists");
+        user.LastName = model.LastName;
+        user.Email = model.Email;
+        user.PhoneNumber = model.PhoneNumber;
+        await _userService.UpdateUser(user);
+        return Ok($"User {user.UserId} updated");
+        
+    }
     
 }

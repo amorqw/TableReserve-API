@@ -1,3 +1,5 @@
+using APIProject.Interfaces;
+using Infrastructure.Content.Services;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +9,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("ConString"), 
         b=> b.MigrationsAssembly("Infrastructure")));
 
+builder.Services.AddScoped<IUser, UserService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
