@@ -1,5 +1,5 @@
 using Core.Entities;
-namespace APIProject.Interfaces;
+namespace Core.Interfaces;
 
 public interface IUser
 {

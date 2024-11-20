@@ -1,7 +1,6 @@
-using APIProject.Interfaces;
+using Core.Interfaces;
 using Core.Entities;
-using APIProject.DtoS;
-using  APIProject.Interfaces;
+using Core.DtoS;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIProject.Controllers;
@@ -60,8 +59,6 @@ public class UserController:ControllerBase
         var user = await _userService.GetById(id);
         if (user == null)
             return BadRequest($"User not found with this id{id}");
-        if(await _userService.UserExists(model.UserId))
-            return BadRequest("User already exists");
         user.LastName = model.LastName;
         user.Email = model.Email;
         user.PhoneNumber = model.PhoneNumber;

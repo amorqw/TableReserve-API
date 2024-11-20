@@ -1,4 +1,4 @@
-using APIProject.Interfaces;
+using Core.Interfaces;
 using Core.Entities;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -34,14 +34,14 @@ public class UserService: IUser
     public async Task<User> UpdateUser(User user)
     {
         _context.Users.Update(user);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return user;
     }
 
     public async Task<User> DeleteUser(User user)
     {
         _context.Users.Remove(user);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         return user;
     }
 

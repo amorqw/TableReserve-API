@@ -1,4 +1,4 @@
-using APIProject.Interfaces;
+using Core.Interfaces;
 using Infrastructure.Content.Services;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +10,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
         b=> b.MigrationsAssembly("Infrastructure")));
 
 builder.Services.AddScoped<IUser, UserService>();
+builder.Services.AddScoped<ITable, TableService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
