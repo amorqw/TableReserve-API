@@ -51,7 +51,7 @@ public class TableController:ControllerBase
         return Ok($"table {id} deleted");
     }
 
-    [HttpPut("{id}")]
+    [HttpPatch("{id}")]
     public async Task<IActionResult> UpdateTable(Guid id, TablesDto model)
     {
         var table  = await _tableService.GetTableById(id);

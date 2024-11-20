@@ -11,6 +11,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IUser, UserService>();
 builder.Services.AddScoped<ITable, TableService>();
+builder.Services.AddScoped<IReservation, ReservationService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
