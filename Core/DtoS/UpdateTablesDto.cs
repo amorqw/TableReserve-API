@@ -1,6 +1,6 @@
 namespace Core.DtoS;
 
-public class TablesDto
+public class UpdateTablesDto
 {
     public bool IsAvailable { get; set; }
     

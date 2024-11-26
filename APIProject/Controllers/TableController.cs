@@ -24,14 +24,12 @@ public class TableController(ITable tableService) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Table>> CreateTable([FromForm] Table table)
+    public async Task<ActionResult<Table>> CreateTable([FromBody] PostTableDto postTableDto)
     {
-        if (await tableService.TableExists(table.TableId))
-        {
-            return BadRequest($"Table {table.TableId} already exists");
-        }
-        var result = await tableService.CreateTable(table);
-        return Ok(await tableService.GetAllTables());
+        if( await tableService.TableExists(postTableDto.TableId))
+            return BadRequest($"reservation with id {postTableDto.TableId} already exists");
+        await tableService.CreateTable(postTableDto);
+        return Ok($"Reservation {postTableDto.TableId} has been created");
     }
 
     [HttpDelete("{id}")]
@@ -45,7 +43,7 @@ public class TableController(ITable tableService) : ControllerBase
     }
 
     [HttpPatch("{id}")]
-    public async Task<IActionResult> UpdateTable(Guid id, TablesDto model)
+    public async Task<IActionResult> UpdateTable(Guid id, UpdateTablesDto model)
     {
         var table  = await tableService.GetTableById(id);
         if(table == null)

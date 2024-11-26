@@ -1,3 +1,4 @@
+using Core.DtoS;
 using Core.Interfaces;
 using Core.Entities;
 using Infrastructure.Data;
@@ -24,11 +25,12 @@ public class TableService: ITable
         return await _context.Tables.Where(t=> t.TableId == id).FirstOrDefaultAsync();
     }
 
-    public async Task<Table> CreateTable(Table table)
+    public async Task<Table> CreateTable(PostTableDto table)
     {
-        await _context.Tables.AddAsync(table);
+        var mapTableDto = MapDtoToTable(table);
+        await _context.Tables.AddAsync(mapTableDto);
         await _context.SaveChangesAsync();
-        return table;
+        return mapTableDto;
     }
 
     public async Task<Table> UpdateTable(Table table)
@@ -49,6 +51,15 @@ public class TableService: ITable
     public async Task<bool> TableExists(Guid id)
     {
         return await _context.Tables.AnyAsync(t => t.TableId == id);
+    }
+    private static Table MapDtoToTable(PostTableDto tableDto)
+    {
+        return new Table
+        {
+            TableId = tableDto.TableId,
+            SeatCount = tableDto.SeatCount,
+            IsAvailable = tableDto.IsAvailable,
+        };
     }
     
 }

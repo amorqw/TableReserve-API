@@ -58,7 +58,7 @@ public class ReservationService:IReservation
         return await _context.Reservations.AnyAsync(t => t.ReservationId == id);
     }
 
-    public static Reservation MapDtoToReservation(ReservationDto reservationDto)
+    private static Reservation MapDtoToReservation(ReservationDto reservationDto)
     {
         return new Reservation
         {
@@ -66,7 +66,7 @@ public class ReservationService:IReservation
             UserId = reservationDto.UserId,
             TableId = reservationDto.TableId,
             ReservationDate = reservationDto.ReservationDate,
-            Status = (Reservation.ReservationStatus)reservationDto.Status // Преобразуем тип статуса
+            Status = (Reservation.ReservationStatus)reservationDto.Status
         };
     }
 }
